@@ -1,29 +1,14 @@
-import { createServer } from "cors-anywhere";
+const express = require("express");
 
-const host = process.env.HOST || "0.0.0.0";
-const port = process.env.PORT || 8080;
+// Initialize Express
+const app = express();
 
-createServer({  
-  requireHeader: ['origin', 'x-requested-with'],  
-  removeHeaders: [
-    'cookie',
-    'cookie2',
-    // Strip Heroku-specific headers
-    'x-request-start',
-    'x-request-id',
-    'via',
-    'connect-time',
-    'total-route-time',
-    // Other Heroku added debug headers
-    // 'x-forwarded-for',
-    // 'x-forwarded-proto',
-    // 'x-forwarded-port',
-  ],
-  redirectSameOrigin: true,
-  httpProxyOptions: {
-    // Do not add X-Forwarded-For, etc. headers, because Heroku already adds it.
-    xfwd: false,
-  },
-}).listen(port, host, function () {
-  console.log("Running CORS Anywhere on " + host + ":" + port);
+// Create GET request
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
+
+// Initialize server
+app.listen(5000, () => {
+  console.log("Running on port 5000.");
 });
