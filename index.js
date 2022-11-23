@@ -9,6 +9,6 @@ app.get("/", (req, res) => {
 });
 
 // Initialize server
-app.listen(5000, () => {
+app.listen(3000, () => {
   console.log("Running on port 5000.");
 });
